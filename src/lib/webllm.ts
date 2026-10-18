@@ -1,6 +1,7 @@
 import type { ConfigType, Diagnostic } from './types';
 
-const preferredModel = 'Qwen2.5-Coder-1.5B-Instruct-q4f16_1-MLC';
+export const preferredModel = 'gemma-4-E2B-it-q4f16_1-MLC';
+export const modelLabel = 'Gemma 4 E2B';
 let engine: any = null;
 let loadedModel = '';
 
@@ -9,7 +10,13 @@ export async function loadWebLLM(onProgress?: (message: string) => void) {
   onProgress?.('Loading WebLLM runtime…');
   const webllm = await import('@mlc-ai/web-llm');
   const models = webllm.prebuiltAppConfig.model_list.map((item: { model_id: string }) => item.model_id);
-  const model = models.includes(preferredModel) ? preferredModel : models.find((item: string) => /Qwen.*Coder.*1\.5B/i.test(item)) || models.find((item: string) => /Qwen.*Instruct/i.test(item)) || models[0];
+  const model = models.includes(preferredModel)
+    ? preferredModel
+    : models.find((item: string) => /^gemma-4-/i.test(item))
+      || models.find((item: string) => /gemma.*it/i.test(item))
+      || models.find((item: string) => /Qwen.*Coder.*1\.5B/i.test(item))
+      || models.find((item: string) => /Qwen.*Instruct/i.test(item))
+      || models[0];
   if (!model) throw new Error('No WebLLM model is available in the current model catalog.');
   engine = await webllm.CreateMLCEngine(model, {
     initProgressCallback: (progress: { text?: string }) => onProgress?.(progress.text || 'Downloading model weights…'),

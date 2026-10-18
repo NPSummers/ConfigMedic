@@ -15,7 +15,7 @@ npm install
 npm run dev
 ```
 
-The built-in checks run immediately in the browser. Click **Load local AI** to download a WebLLM model to the browser cache and enable a deeper local review. No model API key or application backend is required.
+The built-in checks run immediately in the browser. Click **Load Gemma 4** to download the `gemma-4-E2B-it-q4f16_1-MLC` WebLLM weights to the browser cache and enable a deeper local review. Gemma 4 runs locally through WebGPU; no model API key or application backend is required. The first load can take a while and needs a WebGPU-capable browser.
 
 Config type is detected automatically from the pasted file. You can still choose a format manually when reviewing an unusual or partial config.
 

@@ -2,7 +2,7 @@
   import { AlertCircle, Check, CircleHelp, Clipboard, Cpu, FileCode2, GitCompareArrows, LoaderCircle, LockKeyhole, Play, Search, Settings2, ShieldCheck, Terminal, X, Zap } from '@lucide/svelte';
   import { analyzeConfig, applySafeFixes, detectConfigType } from '../lib/diagnostics';
   import { examples, samples } from '../lib/samples';
-  import { askWebLLM, loadWebLLM } from '../lib/webllm';
+  import { askWebLLM, loadWebLLM, modelLabel } from '../lib/webllm';
   import MonacoEditor from '../lib/components/MonacoEditor.svelte';
   import type { Analysis, ConfigExample, ConfigType, Diagnostic } from '../lib/types';
 
@@ -20,7 +20,7 @@
   let analysis: Analysis | null = null;
   let isAnalyzing = false;
   let modelStatus: 'idle' | 'loading' | 'ready' | 'error' = 'idle';
-  let modelMessage = 'Local AI is off';
+  let modelMessage = `${modelLabel} is off`;
   let notice = '';
   let copied = false;
 
@@ -62,11 +62,11 @@
 
   async function loadModel() {
     modelStatus = 'loading';
-    modelMessage = 'Loading local model…';
+    modelMessage = `Loading ${modelLabel}…`;
     try {
       const session = await loadWebLLM((message: string) => (modelMessage = message));
       modelStatus = 'ready';
-      modelMessage = session.model.replace(/-q4f16_1-MLC$/, '');
+      modelMessage = modelLabel;
     } catch (error) {
       modelStatus = 'error';
       modelMessage = error instanceof Error ? error.message : 'Could not load local model.';
@@ -104,7 +104,7 @@
           summary: result.summary,
           usedModel: true,
         };
-        modelMessage = result.model.replace(/-q4f16_1-MLC$/, '');
+        modelMessage = modelLabel;
       } catch (error) {
         notice = error instanceof Error ? `${error.message} Built-in checks are shown.` : 'Local review failed. Built-in checks are shown.';
       }
@@ -134,7 +134,7 @@
   <header class="window-bar">
     <a href="/" class="window-brand" aria-label="ConfigMedic home"><span class="brand-mark"><ShieldCheck size={17} /></span><strong>ConfigMedic</strong><span class="brand-context">local workspace</span></a>
     <div class="window-title"><span class="file-dot"></span>{filename} <span class="title-separator">—</span> ConfigMedic</div>
-    <div class="window-actions"><span class="privacy-note"><LockKeyhole size={13} /> local only</span><button class:ready={modelStatus === 'ready'} class:error={modelStatus === 'error'} class="model-button" on:click={loadModel} disabled={modelStatus === 'loading'}>{#if modelStatus === 'loading'}<LoaderCircle class="spin" size={13} />{:else}<Cpu size={13} />{/if}{modelStatus === 'ready' ? 'AI ready' : modelStatus === 'loading' ? 'Loading' : 'Load AI'}</button><button class="window-icon" aria-label="Settings"><Settings2 size={15} /></button></div>
+    <div class="window-actions"><span class="privacy-note"><LockKeyhole size={13} /> local only</span><button class:ready={modelStatus === 'ready'} class:error={modelStatus === 'error'} class="model-button" on:click={loadModel} disabled={modelStatus === 'loading'}>{#if modelStatus === 'loading'}<LoaderCircle class="spin" size={13} />{:else}<Cpu size={13} />{/if}{modelStatus === 'ready' ? 'Gemma 4 ready' : modelStatus === 'loading' ? 'Loading' : 'Load Gemma 4'}</button><button class="window-icon" aria-label="Settings"><Settings2 size={15} /></button></div>
   </header>
 
   <main class="ide-layout" data-ui>
@@ -154,7 +154,7 @@
       <div class="editor-tabs"><button class:active={activeSurface === 'source'} on:click={() => (activeSurface = 'source')}><FileCode2 size={14} />{filename}<span class="tab-dirty"></span><span class="tab-close">×</span></button><button class:active={activeSurface === 'diff'} on:click={() => (activeSurface = 'diff')}><GitCompareArrows size={14} />Suggested diff</button><div class="editor-tabs-spacer"></div><label class="example-picker"><span>Try</span><select aria-label="Load an example configuration" on:change={(event) => loadExampleById((event.currentTarget as HTMLSelectElement).value)}><option value="">examples…</option>{#each tabs as tab}<optgroup label={tab.label}>{#each examples.filter((example) => example.type === tab.id) as example}<option value={example.id}>{example.label}</option>{/each}</optgroup>{/each}</select></label><button class="editor-action" on:click={runAnalysis} disabled={isAnalyzing}>{#if isAnalyzing}<LoaderCircle class="spin" size={13} />{:else}<Play size={13} />{/if} {isAnalyzing ? 'Checking…' : 'Analyze'}</button></div>
       <div class="breadcrumbs"><span>{currentTab.label}</span><span>/</span><strong>{filename}</strong><span>/</span><span>{activeSurface === 'diff' ? 'proposed changes' : 'document'}</span><span class="detected-status"><span class="status-dot"></span>{manualType ? 'manual format' : detection.label}</span></div>
       <div class="editor-surface" data-ui>{#if activeSurface === 'source'}<MonacoEditor value={source} language={languageFor(effectiveType)} onChange={(next: string) => { source = next; analysis = null; }} />{:else}<div class="diff-heading"><span><GitCompareArrows size={14} /> {analysis ? 'Review the proposed replacement' : 'Run Analyze to generate a diff'}</span><button on:click={copyCorrected}>{#if copied}<Check size={13} /> copied{:else}<Clipboard size={13} /> copy corrected{/if}</button></div><MonacoEditor mode="diff" language={languageFor(effectiveType)} original={source} modified={analysis?.corrected || source} />{/if}</div>
-      <section class="bottom-panel" data-ui><div class="bottom-tabs"><button class:active={bottomPanel === 'problems'} on:click={() => (bottomPanel = 'problems')}><AlertCircle size={14} />Problems <span class:error-text={errorCount > 0}>{errorCount + warningCount}</span></button><button class:active={bottomPanel === 'output'} on:click={() => (bottomPanel = 'output')}><Terminal size={14} />Output</button><div class="bottom-spacer"></div><span class="bottom-summary">{warningCount} warnings · {modelStatus === 'ready' ? 'local AI enabled' : 'built-in checks'}</span></div>{#if bottomPanel === 'problems'}<div class="problems-list">{#if diagnostics.length === 0}<div class="problem-empty"><Check size={15} /> No problems found.</div>{:else}{#each diagnostics as diagnostic}<div class="problem-row"><div class:danger={diagnostic.severity === 'error'} class:warn={diagnostic.severity === 'warning'} class:info={diagnostic.severity === 'info'} class="problem-icon">{#if diagnostic.severity === 'error'}<AlertCircle size={14} />{:else if diagnostic.severity === 'warning'}<CircleHelp size={14} />{:else}<Zap size={14} />{/if}</div><div class="problem-content"><div class="problem-title">{diagnostic.title}<span class="problem-location">{filename}:{diagnostic.line}</span></div><div class="problem-detail">{diagnostic.detail}</div><div class="problem-fix">Fix: {diagnostic.fix}</div></div><span class="problem-source">{diagnostic.source === 'webllm' ? 'AI' : diagnostic.source === 'schema' ? 'Schema' : 'Rule'}</span></div>{/each}{/if}</div>{:else}<div class="output-panel"><div class="output-line"><span class="output-time">now</span><span>{notice || (analysis ? analysis.summary : 'Ready. Run Analyze to check the current file.')}</span></div><div class="output-line"><span class="output-time">status</span><span>{modelMessage}</span></div></div>{/if}</section>
+      <section class="bottom-panel" data-ui><div class="bottom-tabs"><button class:active={bottomPanel === 'problems'} on:click={() => (bottomPanel = 'problems')}><AlertCircle size={14} />Problems <span class:error-text={errorCount > 0}>{errorCount + warningCount}</span></button><button class:active={bottomPanel === 'output'} on:click={() => (bottomPanel = 'output')}><Terminal size={14} />Output</button><div class="bottom-spacer"></div><span class="bottom-summary">{warningCount} warnings · {modelStatus === 'ready' ? `${modelLabel} enabled` : 'built-in checks'}</span></div>{#if bottomPanel === 'problems'}<div class="problems-list">{#if diagnostics.length === 0}<div class="problem-empty"><Check size={15} /> No problems found.</div>{:else}{#each diagnostics as diagnostic}<div class="problem-row"><div class:danger={diagnostic.severity === 'error'} class:warn={diagnostic.severity === 'warning'} class:info={diagnostic.severity === 'info'} class="problem-icon">{#if diagnostic.severity === 'error'}<AlertCircle size={14} />{:else if diagnostic.severity === 'warning'}<CircleHelp size={14} />{:else}<Zap size={14} />{/if}</div><div class="problem-content"><div class="problem-title">{diagnostic.title}<span class="problem-location">{filename}:{diagnostic.line}</span></div><div class="problem-detail">{diagnostic.detail}</div><div class="problem-fix">Fix: {diagnostic.fix}</div></div><span class="problem-source">{diagnostic.source === 'webllm' ? 'Gemma 4' : diagnostic.source === 'schema' ? 'Schema' : 'Rule'}</span></div>{/each}{/if}</div>{:else}<div class="output-panel"><div class="output-line"><span class="output-time">now</span><span>{notice || (analysis ? analysis.summary : 'Ready. Run Analyze to check the current file.')}</span></div><div class="output-line"><span class="output-time">status</span><span>{modelMessage}</span></div></div>{/if}</section>
       <div class="status-bar" data-ui><span>Ln 1, Col 1</span><span>Spaces: 2</span><span>{languageFor(effectiveType).toUpperCase()}</span><span class="status-spacer"></span><span class="health-score"><span class="score-dot"></span> health {score}/100</span><span>ConfigMedic</span></div>
     </section>
   </main>
