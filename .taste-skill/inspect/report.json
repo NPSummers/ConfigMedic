@@ -1,0 +1,874 @@
+{
+ "url": "http://127.0.0.1:5173/",
+ "at": "2026-10-18T19:05:45.589Z",
+ "allow": [
+  "mono"
+ ],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 1,
+   "filled": [
+    0.61
+   ],
+   "motion": {
+    "elements": 9,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 5,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 900,
+     "screens": 1,
+     "words": 206,
+     "img": 0,
+     "video": 0,
+     "canvas": 3,
+     "svg": 18,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 7,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 5,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": []
+    },
+    "hero": null,
+    "h1": null,
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Figtree",
+       "share": 0.76,
+       "mono": false
+      },
+      {
+       "family": "Menlo",
+       "share": 0.24,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12
+     ],
+     "sizeCount": 2,
+     "notLoaded": [
+      "Menlo"
+     ],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 13,
+      "vw": 0.9,
+      "font": "Menlo",
+      "text": "1"
+     },
+     "monoShare": 0.24,
+     "monoProseShare": 0.24,
+     "monoFamilies": [
+      "Menlo"
+     ],
+     "monoSamples": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.04,
+     "centerShare": 0.06,
+     "smallText": 2
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#181818",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 0.09
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#181818",
+       "top": 0,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#1e1e1e",
+       "top": 42,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.12
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#858585",
+       "share": 0.33
+      },
+      {
+       "color": "#b5cea8",
+       "share": 0.18
+      },
+      {
+       "color": "#4ec9b0",
+       "share": 0.13
+      },
+      {
+       "color": "#d4d4d4",
+       "share": 0.09
+      },
+      {
+       "color": "#666666",
+       "share": 0.04
+      }
+     ],
+     "button": {
+      "bg": "#1e1e1e",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 0.12
+      },
+      "fg": "#d4d4d4"
+     },
+     "lowContrast": [
+      {
+       "text": "ConfigMedic",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "v0.1",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "2 warnings · built-in checks",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "Rule",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "Rule",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "Your config is inspected in this tab. We",
+       "ratio": 4.4,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#858585",
+       "bg": "#202020"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 3,
+     "radius": 0,
+     "height": 36,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "deployment.yaml ×",
+      "Suggested diff",
+      "Analyze"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 42,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "figtree",
+     "codicon"
+    ]
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 1,
+   "filled": [
+    0.51
+   ],
+   "motion": {
+    "elements": 9,
+    "css": 4,
+    "transitions": 0,
+    "scripted": 5,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 1024,
+     "screens": 1,
+     "words": 216,
+     "img": 0,
+     "video": 0,
+     "canvas": 3,
+     "svg": 18,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 7,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 5,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": []
+    },
+    "hero": null,
+    "h1": null,
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Figtree",
+       "share": 0.71,
+       "mono": false
+      },
+      {
+       "family": "Menlo",
+       "share": 0.29,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12
+     ],
+     "sizeCount": 2,
+     "notLoaded": [
+      "Menlo"
+     ],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 13,
+      "vw": 1.7,
+      "font": "Menlo",
+      "text": "1"
+     },
+     "monoShare": 0.29,
+     "monoProseShare": 0.29,
+     "monoFamilies": [
+      "Menlo"
+     ],
+     "monoSamples": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.04,
+     "centerShare": 0.05,
+     "smallText": 2
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#181818",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 0.09
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#181818",
+       "top": 0,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#1e1e1e",
+       "top": 42,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.12
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#858585",
+       "share": 0.32
+      },
+      {
+       "color": "#b5cea8",
+       "share": 0.18
+      },
+      {
+       "color": "#4ec9b0",
+       "share": 0.15
+      },
+      {
+       "color": "#d4d4d4",
+       "share": 0.09
+      },
+      {
+       "color": "#666666",
+       "share": 0.04
+      }
+     ],
+     "button": {
+      "bg": "#1e1e1e",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 0.12
+      },
+      "fg": "#d4d4d4"
+     },
+     "lowContrast": [
+      {
+       "text": "ConfigMedic",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "v0.1",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "2 warnings · built-in checks",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "Rule",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "Rule",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "Your config is inspected in this tab. We",
+       "ratio": 4.4,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#858585",
+       "bg": "#202020"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 3,
+     "radius": 0,
+     "height": 36,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "deployment.yaml ×",
+      "Suggested diff",
+      "Analyze"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 42,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "figtree",
+     "codicon"
+    ]
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 2,
+   "filled": [
+    0.46,
+    0.46
+   ],
+   "motion": {
+    "elements": 9,
+    "css": 3,
+    "transitions": 1,
+    "scripted": 5,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 524,
+     "h": 1134
+    },
+    "page": {
+     "height": 1134,
+     "screens": 1,
+     "words": 132,
+     "img": 0,
+     "video": 0,
+     "canvas": 3,
+     "svg": 18,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 7,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 5,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": []
+    },
+    "hero": null,
+    "h1": null,
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Figtree",
+       "share": 0.69,
+       "mono": false
+      },
+      {
+       "family": "Menlo",
+       "share": 0.31,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12
+     ],
+     "sizeCount": 2,
+     "notLoaded": [
+      "Menlo"
+     ],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 13,
+      "vw": 2.5,
+      "font": "Menlo",
+      "text": "2"
+     },
+     "monoShare": 0.31,
+     "monoProseShare": 0.31,
+     "monoFamilies": [
+      "Menlo"
+     ],
+     "monoSamples": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.06,
+     "smallText": 1
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#181818",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 0.09
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#181818",
+       "top": 0,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#1e1e1e",
+       "top": 42,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.12
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#858585",
+       "share": 0.32
+      },
+      {
+       "color": "#b5cea8",
+       "share": 0.23
+      },
+      {
+       "color": "#4ec9b0",
+       "share": 0.17
+      },
+      {
+       "color": "#d4d4d4",
+       "share": 0.13
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.05
+      }
+     ],
+     "button": {
+      "bg": "#1e1e1e",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 0.12
+      },
+      "fg": "#d4d4d4"
+     },
+     "lowContrast": [
+      {
+       "text": "Rule",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      },
+      {
+       "text": "Rule",
+       "ratio": 3.1,
+       "need": 4.5,
+       "size": 10,
+       "fg": "#666666",
+       "bg": "#181818"
+      }
+     ]
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 36,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "deployment.yaml ×",
+      "Analyze"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 42,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "figtree",
+     "codicon"
+    ]
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "contrast",
+   "width": 1440,
+   "message": "Low-contrast text: \"ConfigMedic\" 3.1:1 needs 4.5:1; \"v0.1\" 3.1:1 needs 4.5:1; \"2 warnings · built-in checks\" 3.1:1 needs 4.5:1; \"Rule\" 3.1:1 needs 4.5:1",
+   "fix": "Darken or lighten the text colour.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "font-fallback",
+   "width": 1440,
+   "message": "Typeface(s) declared but not loaded, so a fallback is rendering: Menlo",
+   "fix": "Fix the font URL / family name, or the screenshots you are judging are not the design.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-real-pictures",
+   "width": 1440,
+   "message": "Only 0 real photograph(s) or clip(s); the rest are interface fragments.",
+   "fix": "Add two or more real pictures of the customer's world from scripts/assets.mjs, not stock of people at laptops."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "small-text",
+   "width": 1440,
+   "message": "2 text block(s) under 13px.",
+   "fix": "Nothing meant to be read goes below 13px.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-hero",
+   "width": 1440,
+   "message": "No headline found in the first viewport.",
+   "fix": "The first screen needs a clear focal statement or image.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Little motion: 9 element(s) moved while the page loaded and scrolled.",
+   "fix": "Give every section an entrance for its parts (not one fade of the whole block) and add one moving picture: a looping clip or a slow move on a photograph."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/santiago/projects/ConfigMedic/.taste-skill/inspect/desktop-fold.jpg",
+   "pages": [
+    "/Users/santiago/projects/ConfigMedic/.taste-skill/inspect/desktop-page-01.jpg"
+   ]
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/santiago/projects/ConfigMedic/.taste-skill/inspect/tablet-fold.jpg",
+   "pages": [
+    "/Users/santiago/projects/ConfigMedic/.taste-skill/inspect/tablet-page-01.jpg"
+   ]
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/santiago/projects/ConfigMedic/.taste-skill/inspect/mobile-fold.jpg",
+   "pages": [
+    "/Users/santiago/projects/ConfigMedic/.taste-skill/inspect/mobile-page-01.jpg"
+   ]
+  }
+ ]
+}
