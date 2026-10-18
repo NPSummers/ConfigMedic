@@ -1,5 +1,14 @@
 export type ConfigType = 'kubernetes' | 'compose' | 'nixos' | 'nginx';
 
+export type ConfigExample = {
+  id: string;
+  type: ConfigType;
+  label: string;
+  description: string;
+  language: string;
+  code: string;
+};
+
 export type Severity = 'error' | 'warning' | 'info';
 
 export type Diagnostic = {

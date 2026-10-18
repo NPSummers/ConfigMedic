@@ -1,4 +1,4 @@
-import { parse } from 'yaml';
+import { parseAllDocuments } from 'yaml';
 import type { ConfigType, Detection, Diagnostic } from './types';
 
 const issue = (
@@ -36,7 +36,14 @@ export function detectConfigType(source: string): Detection {
 
 function parseYamlDiagnostics(source: string, type: ConfigType): Diagnostic[] {
   try {
-    const document = parse(source);
+    const documents = parseAllDocuments(source);
+    const syntaxError = documents.flatMap((item) => item.errors)[0];
+    if (syntaxError) {
+      const line = syntaxError.linePos?.[0]?.line || 1;
+      return [issue('yaml-parse', line, 'error', 'YAML syntax error', syntaxError.message.replace(/\s+/g, ' ').slice(0, 180), 'Fix the indentation, quoting, or delimiter near this line and run the check again.', 'schema')];
+    }
+
+    const document = documents[0]?.toJS() as Record<string, any> | null | undefined;
     if (document === null || typeof document !== 'object') {
       return [issue('empty-document', 1, 'error', 'No configuration document', 'The editor contains no structured configuration to validate.', 'Paste a YAML document or load a sample.', 'schema')];
     }
