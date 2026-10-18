@@ -2,31 +2,38 @@ import type { ConfigType, Diagnostic } from './types';
 
 export const preferredModel = 'gemma-4-E2B-it-q4f16_1-MLC';
 export const modelLabel = 'Gemma 4 E2B';
+export const modelOptions = [
+  { id: preferredModel, label: 'Gemma 4 E2B' },
+  { id: 'Qwen2.5-Coder-1.5B-Instruct-q4f16_1-MLC', label: 'Qwen Coder 1.5B' },
+] as const;
 let engine: any = null;
 let loadedModel = '';
 
-export async function loadWebLLM(onProgress?: (message: string) => void) {
-  if (engine) return { model: loadedModel, engine };
-  onProgress?.('Loading WebLLM runtime…');
+export function getModelLabel(modelId: string) {
+  return modelOptions.find((option) => option.id === modelId)?.label || modelId;
+}
+
+export async function loadWebLLM(modelId = preferredModel, onProgress?: (message: string, progress?: number) => void) {
+  if (engine && loadedModel === modelId) return { model: loadedModel, engine };
+  if (engine && loadedModel !== modelId) {
+    await engine.unload();
+    engine = null;
+    loadedModel = '';
+  }
+  onProgress?.('Loading WebLLM runtime…', 0);
   const webllm = await import('@mlc-ai/web-llm');
   const models = webllm.prebuiltAppConfig.model_list.map((item: { model_id: string }) => item.model_id);
-  const model = models.includes(preferredModel)
-    ? preferredModel
-    : models.find((item: string) => /^gemma-4-/i.test(item))
-      || models.find((item: string) => /gemma.*it/i.test(item))
-      || models.find((item: string) => /Qwen.*Coder.*1\.5B/i.test(item))
-      || models.find((item: string) => /Qwen.*Instruct/i.test(item))
-      || models[0];
-  if (!model) throw new Error('No WebLLM model is available in the current model catalog.');
+  const model = models.includes(modelId) ? modelId : undefined;
+  if (!model) throw new Error(`${getModelLabel(modelId)} is not available in the current WebLLM model catalog.`);
   engine = await webllm.CreateMLCEngine(model, {
-    initProgressCallback: (progress: { text?: string }) => onProgress?.(progress.text || 'Downloading model weights…'),
+    initProgressCallback: (progress: { progress: number; text?: string }) => onProgress?.(progress.text || 'Downloading model weights…', progress.progress),
   });
   loadedModel = model;
   return { model, engine };
 }
 
-export async function askWebLLM(source: string, type: ConfigType, diagnostics: Diagnostic[], onProgress?: (message: string) => void) {
-  const session = await loadWebLLM(onProgress);
+export async function askWebLLM(source: string, type: ConfigType, diagnostics: Diagnostic[], onProgress?: (message: string, progress?: number) => void) {
+  const session = await loadWebLLM(loadedModel || preferredModel, onProgress);
   const prompt = `You are ConfigMedic, a cautious infrastructure configuration reviewer. Analyze this ${type} configuration. Return ONLY valid JSON with this exact shape: {"summary":"short sentence","diagnostics":[{"line":1,"severity":"error|warning|info","title":"...","detail":"...","fix":"..."}],"corrected":"full corrected configuration"}. Preserve the user's intent. Do not invent services, credentials, or secret values. Keep corrected as a complete replacement file. Existing deterministic findings: ${JSON.stringify(diagnostics)}.\n\nCONFIGURATION:\n${source}`;
   const response = await session.engine.chat.completions.create({
     messages: [
